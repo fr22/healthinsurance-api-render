@@ -1,5 +1,6 @@
 import pickle
 import os
+import inflection
 
 class HealthInsurance(object):
     def __init__(self):
@@ -15,6 +16,11 @@ class HealthInsurance(object):
    
     def data_preparation(self, df):
         df1 = df.copy()
+        #renomeando colunas
+        cols_old = list(df1.columns)
+        cols_new =  list(map(lambda x: inflection.underscore(x), cols_old))
+        df1.columns = cols_new
+        # aplicando pre-processamento
         df1['age'] = self.age_scaler.transform(df1[['age']].values)
         df1['vintage'] = self.vintage_scaler.transform(df1[['vintage']].values)
         df1['annual_premium'] = self.annual_premium_scaler.transform(df1[['annual_premium']].values)
