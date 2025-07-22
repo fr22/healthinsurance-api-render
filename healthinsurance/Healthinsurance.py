@@ -20,6 +20,20 @@ class HealthInsurance(object):
         cols_old = list(df1.columns)
         cols_new =  list(map(lambda x: inflection.underscore(x), cols_old))
         df1.columns = cols_new
+        # convertendo tipos de dados
+        df1 = df1.astype({
+            'age': 'int',
+            'annual_premium': 'float',
+            'driving_license': 'int',
+            'gender': 'object',
+            'id': 'int',
+            'policy_sales_channel': 'int',
+            'previously_insured': 'int',
+            'region_code': 'int',
+            'vehicle_age': 'object',
+            'vehicle_damage': 'object',
+            'vintage': 'int'
+        })
         # aplicando pre-processamento
         df1['age'] = self.age_scaler.transform(df1[['age']].values)
         df1['vintage'] = self.vintage_scaler.transform(df1[['vintage']].values)
