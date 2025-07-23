@@ -22,17 +22,17 @@ class HealthInsurance(object):
         df1.columns = cols_new
         # convertendo tipos de dados
         df1 = df1.astype({
-            'age': 'int',
+            'age': 'float',
             'annual_premium': 'float',
-            'driving_license': 'int',
+            'driving_license': 'float',
             'gender': 'object',
-            'id': 'int',
-            'policy_sales_channel': 'int',
-            'previously_insured': 'int',
-            'region_code': 'int',
+            'id': 'float',
+            'policy_sales_channel': 'float',
+            'previously_insured': 'float',
+            'region_code': 'float',
             'vehicle_age': 'object',
             'vehicle_damage': 'object',
-            'vintage': 'int'
+            'vintage': 'float'
         })
         # aplicando pre-processamento
         df1['age'] = self.age_scaler.transform(df1[['age']].values)
